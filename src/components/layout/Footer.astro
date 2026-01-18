@@ -16,6 +16,14 @@ const { className } = Astro.props;
 const stats = await getSiteStats();
 const currentYear = new Date().getFullYear();
 const startYear = siteConfig?.startYear ?? currentYear;
+const icp = {
+  text: '',
+  link: '',
+};
+const beian = {
+  text: '',
+  link: '',
+};
 ---
 
 <footer class={cn('mt-auto pb-6', className)}>
@@ -67,6 +75,38 @@ const startYear = siteConfig?.startYear ?? currentYear;
         {siteConfig?.alternate ? `@${siteConfig.alternate}` : ''}
       </span>
     </div>
+
+    <!-- ICP & Beian -->
+    {
+      (icp?.text || beian?.text) && (
+        <div class="text-muted-foreground/80 flex flex-wrap items-center justify-center gap-2 text-xs">
+          {icp?.text && (
+            <a
+              href={icp.link || "#"}
+              target="_blank"
+              rel="noreferrer"
+              class="footer-link transition-all duration-300"
+            >
+              {icp.text}
+            </a>
+          )}
+          {icp?.text && beian?.text && (
+            <span class="opacity-50">·</span>
+          )}
+          {beian?.text && (
+            <a
+              href={beian.link || "#"}
+              target="_blank"
+              rel="noreferrer"
+              class="footer-link flex items-center gap-1 transition-all duration-300"
+            >
+              <img src="/img/foot-ga.png" alt="公安备案" class="h-4 w-4" />
+              {beian.text}
+            </a>
+          )}
+        </div>
+      )
+    }
 
     <!-- Powered By -->
     <div class="text-muted-foreground/80 flex items-center gap-2 text-xs">
