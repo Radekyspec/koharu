@@ -302,6 +302,8 @@ navigation:
   - name: 首页 # 菜单显示名称
     path: / # 链接路径
     icon: ri:home-heart-fill # 图标
+  # - name: 书摘
+  #   path: /reading
   - name: 周刊
     path: /weekly
     icon: ri:newspaper-line
